@@ -1,6 +1,7 @@
 var irc = require('irc');
 var config = require('./config');
 
+// Replaces "should have" by "shuhao" in sentences people say
 function reactToShouldHave(client)
 {
     var rgx = ['should have', "should've", 'should of'];
@@ -15,6 +16,7 @@ function reactToShouldHave(client)
     });
 }
 
+// Reacts to messages containing only a smiley
 function smiley(client)
 {
     var base = {

@@ -53,7 +53,7 @@ function whatever(client)
     var quote = ['whatever', "it's fine", "rockband?", "pool?", "crepevine?", "club house?", 'big jumbo platter?', 'DUDE', 'wat', 'WAT'];
     var hater = ['webdev', 'firefox OS', 'indexeddb', 'PaaS', 'guitar', 'javascript'];
     client.addListener('message', function(from, chan, message) {
-        if (from == 'Pwnna' || from == 'Punna' || from == 'bbouvier') {
+        if (from == 'Pwnna' || from == 'Punna') {
             if (Math.random() > 0.85) {
                 client.say(chan, from + ': ' + quote[Math.floor(Math.random() * quote.length)]);
             } else if (Math.random() > 0.95) {

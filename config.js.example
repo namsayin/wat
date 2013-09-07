@@ -1,0 +1,7 @@
+module.exports = {
+    server: 'irc.somewhere.org',
+    channels: ['#wat'],
+    nick: 'watbot',
+    userName: 'anonymous',
+    realName: 'anonymous',
+}

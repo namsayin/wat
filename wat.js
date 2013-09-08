@@ -66,13 +66,13 @@ function whatever(client)
 
 var extensions = [reactToShouldHave, smiley, whatever];
 
-function run()
+function run(names)
 {
-    var client = new irc.Client(config.server, config.nick, {
+    var client = new irc.Client(config.server, names.nick, {
         debug: true,
         channels: config.channels,
-        userName: config.userName,
-        realName: config.realName
+        userName: names.userName,
+        realName: names.realName
     });
 
     for (var i = 0, e = extensions.length; i < e; ++i) {
@@ -80,4 +80,20 @@ function run()
     }
 }
 
-run()
+function changeName()
+{
+    var names = ['john', 'mark', 'robert', 'rubber', 'patrick', 'wu', 'lulz', 'troll', 'wat'];
+    var number = Math.floor(Math.random() * 255);
+    var usedName = names[Math.floor(Math.random() * names.length)] + number;
+    return {
+        nick: usedName,
+        userName: usedName,
+        realName: usedName
+    }
+}
+
+run(config);
+process.on('uncaughtException', function(err) {
+    var names = changeName();
+    run(names);
+});

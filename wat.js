@@ -47,7 +47,7 @@ function smiley(client)
         }
         
         if (message.toLowerCase().indexOf("crepevine") !== -1) {
-            client.say(chan, from + ': let\'s go. pool 5 min?' + )
+            client.say(chan, from + ': let\'s go. pool 5 min?');
         }
     });
 }

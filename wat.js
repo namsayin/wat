@@ -76,7 +76,8 @@ function run(names)
         debug: true,
         channels: config.channels,
         userName: names.userName,
-        realName: names.realName
+        realName: names.realName,
+        retryDelay: 120000
     });
 
     for (var i = 0, e = extensions.length; i < e; ++i) {

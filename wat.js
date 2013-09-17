@@ -57,12 +57,12 @@ function whatever(client)
     var quote = ['whatever', "it's fine", "rockband?", "pool?", "crepevine?", "club house?", 'big jumbo platter?', 'DUDE', 'wat', 'WAT'];
     var hater = ['webdev', 'firefox OS', 'indexeddb', 'PaaS', 'guitar', 'javascript'];
     client.addListener('message', function(from, chan, message) {
-        if (from == 'Pwnna' || from == 'Punna') {
+        if (from == 'Pwnna' || from == 'Punna' || from == 'Ponna') {
             if (Math.random() > 0.85) {
                 client.say(chan, from + ': ' + quote[Math.floor(Math.random() * quote.length)]);
-            } else if (Math.random() > 0.95) {
+            } else if (Math.random() > 0.98) {
                 var which = hater[Math.floor(Math.random() * hater.length)];
-                client.say(chan, from + ': I hate ' + which + '. ' + which + " is too hard. Did I mention that I am terrible at " + which + '?');
+                client.say(chan, from + ': I hate ' + which + '. ' + which + " is too hard. I should just catch " + which + 'instead.');
             }
         }
     });

@@ -41,7 +41,7 @@ function smiley(client)
     client.addListener('message', function(from, chan, message) {
         for (var s in rgx) {
             if (rgx[s].test(message)) {
-                client.say(chan, from + ': ' + smileys[s]);
+                client.say(chan, smileys[s]);
                 break;
             }
         }

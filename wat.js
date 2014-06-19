@@ -45,9 +45,14 @@ function smiley(client)
                 break;
             }
         }
-        
+
         if (message.toLowerCase().indexOf("crepevine") !== -1) {
             client.say(chan, from + ': let\'s go. pool 5 min?');
+        }
+    });
+    client.addListener('pm', function(from, message) {
+        if (from == 'bbrittain' || from == 'bbouvier'){
+            client.say('#interns', message);
         }
     });
 }

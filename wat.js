@@ -38,6 +38,7 @@ function smiley(client)
         rgx[s] = new RegExp(sanitizeRgx('^' + s + '$'));
         rgx[base[s]] = new RegExp(sanitizeRgx('^' + base[s] + '$'));
     }
+
     client.addListener('message', function(from, chan, message) {
         for (var s in rgx) {
             if (rgx[s].test(message)) {
@@ -45,14 +46,31 @@ function smiley(client)
                 break;
             }
         }
-
-        if (message.toLowerCase().indexOf("crepevine") !== -1) {
-            client.say(chan, from + ': let\'s go. pool 5 min?');
-        }
     });
+
     client.addListener('pm', function(from, message) {
         if (from == 'bbrittain' || from == 'bbouvier'){
             client.say('#interns', message);
+        }
+    });
+}
+
+// Invite people to go to crepevine together
+function crepevine(client)
+{
+    var lastCrepevineInvite = Date.now();
+    var firstTime = true;
+
+    client.addListener('message', function(from, chan, message) {
+        // Avoid inviting people to crepevine more than once every 5 minutes
+        var diffCrepevine = (Date.now() - lastCrepevineInvite) / 1000;
+        const CREPEVINE_THRESHOLD = 5 * 60; // 5 minutes
+        var canSend = firstTime || diffCrepevine > CREPEVINE_THRESHOLD;
+
+        if (message.toLowerCase().indexOf("crepevine") !== -1 && canSend) {
+            client.say(chan, from + ': let\'s go. pool 5 min?');
+            lastCrepevineInvite = Date.now();
+            firstTime = false;
         }
     });
 }
@@ -73,7 +91,7 @@ function whatever(client)
     });
 }
 
-var extensions = [reactToShouldHave, smiley, whatever];
+var extensions = [reactToShouldHave, smiley, whatever, crepevine];
 
 function run(names)
 {

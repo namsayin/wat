@@ -47,12 +47,6 @@ function smiley(client)
             }
         }
     });
-
-    client.addListener('pm', function(from, message) {
-        if (from == 'bbrittain' || from == 'bbouvier'){
-            client.say('#interns', message);
-        }
-    });
 }
 
 // Invite people to go to crepevine together
@@ -91,7 +85,21 @@ function whatever(client)
     });
 }
 
-var extensions = [reactToShouldHave, smiley, whatever, crepevine];
+function godmode(client)
+{
+    client.addListener('pm', function(from, message) {
+        if (from == 'bbrittain' || from == 'bbouvier'){
+            client.say('#interns', message);
+        } else {
+            // Repeat direct messages to owners
+            var message = from + ': ' + message;
+            client.say('bbrittain', message);
+            client.say('bbouvier', message);
+        }
+    });
+}
+
+var extensions = [reactToShouldHave, smiley, whatever, crepevine, godmode];
 
 function run(names)
 {

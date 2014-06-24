@@ -85,7 +85,7 @@ function whatever(client)
                 client.say(chan, from + ': ' + quote[Math.floor(Math.random() * quote.length)]);
             } else if (Math.random() > 0.98) {
                 var which = hater[Math.floor(Math.random() * hater.length)];
-                client.say(chan, from + ': I hate ' + which + '. ' + which + " is too hard. I should just catch " + which + 'instead.');
+                client.say(chan, from + ': I hate ' + which + '. ' + which + " is too hard. I should just coach " + which + 'instead.');
             }
         }
     });

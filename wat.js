@@ -1,11 +1,18 @@
 var irc = require('irc');
 var config = require('./config');
 
+function ignore(from) {
+    return from.indexOf('dwong') !== -1;
+}
+
 // Replaces "should have" by "shuhao" in sentences people say
 function reactToShouldHave(client)
 {
     var rgx = ['should have', "should've", 'should of'];
     client.addListener('message', function (from, chan, message) {
+        if (ignore(from))
+            return;
+
         for (var i = 0; i < rgx.length; ++i) {
             var diff = message.replace(rgx[i], '*shuhao');
             if (diff !== message) {
@@ -40,6 +47,9 @@ function smiley(client)
     }
 
     client.addListener('message', function(from, chan, message) {
+        if (ignore(from))
+            return;
+
         for (var s in rgx) {
             if (rgx[s].test(message)) {
                 client.say(chan, smileys[s]);
@@ -56,6 +66,9 @@ function crepevine(client)
     var firstTime = true;
 
     client.addListener('message', function(from, chan, message) {
+        if (ignore(from))
+            return;
+
         // Avoid inviting people to crepevine more than once every 5 minutes
         var diffCrepevine = (Date.now() - lastCrepevineInvite) / 1000;
         const CREPEVINE_THRESHOLD = 5 * 60; // 5 minutes

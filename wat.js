@@ -2,7 +2,7 @@ var irc = require('irc');
 var config = require('./config');
 
 function ignore(from) {
-    return from.indexOf('dwong') !== -1;
+    return from.indexOf('dwong') !== -1 || from.indexOf('firebot') !== -1;
 }
 
 // Replaces "should have" by "shuhao" in sentences people say
